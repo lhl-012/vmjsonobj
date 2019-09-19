@@ -10,6 +10,7 @@ import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
 import com.base.captain.setCircle
 import com.base.captain.setImgUrl
+import com.base.captain.setRound
 
 class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun setText(@IdRes id: Int, text: CharSequence): BaseViewHolder {
@@ -49,6 +50,10 @@ class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun setImageCircle(@IdRes id: Int, url: String?): BaseViewHolder {
         itemView.findViewById<ImageView>(id)?.setCircle(url, 0)
+        return this
+    }
+    fun setImageRound(@IdRes id: Int, url: String?,radio:Int): BaseViewHolder {
+        itemView.findViewById<ImageView>(id)?.setRound(url, radio)
         return this
     }
 

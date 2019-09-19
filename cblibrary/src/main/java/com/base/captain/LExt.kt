@@ -21,6 +21,7 @@ import com.base.captain.utils.BaseViewModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -55,6 +56,14 @@ fun ImageView.setImgFitxy(url: String?) {
 fun ImageView.setCircle(url: String?, error: Int) {
     Glide.with(this).load(url)
         .apply(RequestOptions().error(error).transform(CenterCrop(), CircleCrop())).into(this)
+}
+fun ImageView.setRound(url: String?, error: Int,radio:Int) {
+    Glide.with(this).load(url)
+        .apply(RequestOptions().error(error).transform(CenterCrop(), RoundedCorners(radio))).into(this)
+}
+fun ImageView.setRound(url: String?,radio:Int) {
+    Glide.with(this).load(url)
+        .apply(RequestOptions().transform(CenterCrop(), RoundedCorners(radio))).into(this)
 }
 
 fun ImageView.setImgFitxy(url: Int) {
