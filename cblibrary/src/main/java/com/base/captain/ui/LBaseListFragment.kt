@@ -48,7 +48,11 @@ abstract class LBaseListFragment<D> : LBaseFragment() {
         }
     }
     override fun initialized() {
-        recyclerView?.adapter = mAdapter
+        recyclerView?.adapter = mAdapter.apply {
+            if(customEmptyView()!=0){
+                addEmptyView(inflateView(customEmptyView()))
+            }
+        }
         if (initType() == Type.BOTH || initType() == Type.TOP) {
             refreshLayout?.onRefreshListener {
                 fresh = true
@@ -155,7 +159,7 @@ abstract class LBaseListFragment<D> : LBaseFragment() {
 
     open fun customNoMoreData()=false
     open fun customAutoRefresh()=true
-
+    open fun customEmptyView()=0
     open fun getData() {
         refreshLayout.finishRefresh()
     }
